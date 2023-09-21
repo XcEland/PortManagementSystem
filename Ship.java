@@ -159,5 +159,9 @@ public class Ship implements IShip {
     
         this.maxNumberOfLiquidContainers = maxNumberOfLiquidContainers;
     }
-}  
+
+    public Container findContainerById(int containerId) {
+        return null;
+    }
+}
     

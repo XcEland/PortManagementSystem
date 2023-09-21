@@ -10,7 +10,13 @@ abstract class Container {
     public abstract double consumption();
 
     public boolean equals(Container other) {
-        return this.getClass() == other.getClass() && this.ID == other.ID && this.weight == other.weight;
-        //return this.ID == other.ID && this.weight == other.weight;
+        //return this.getClass() == other.getClass() && this.ID == other.ID && this.weight == other.weight;
+        return this.ID == other.ID && this.weight == other.weight;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    
 }
