@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
-class Port<Ship> implements IPort {
+public class Port implements IPort {
+
     private int ID;
     private double latitude;
     private double longitude;
-    ArrayList<Container> containers;
+    private ArrayList<Container> containers;
     private ArrayList<Ship> history;
     private ArrayList<Ship> current;
 
@@ -18,28 +19,75 @@ class Port<Ship> implements IPort {
     }
 
     @Override
+    public void incomingShip(Ship s) {
+        if (!current.contains(s)) {
+            current.add(s);
+        }
+    }
+
+    @Override
+    public void outgoingShip(Ship s) {
+        if (current.contains(s)) {
+            current.remove(s);
+        }
+
+        if (!history.contains(s)) {
+            history.add(s);
+        }
+    }
+
+    @Override
     public double getDistance(Port other) {
-        // Calculate the distance between this port and another port
-        // You can implement the distance calculation logic here
-        // For example, you can calculate the Euclidean distance based on latitude and longitude
-        double latDiff = Math.abs(this.latitude - other.latitude);
-        double lonDiff = Math.abs(this.longitude - other.longitude);
-        return Math.sqrt(latDiff * latDiff + lonDiff * lonDiff);
+        double distance = Math.sqrt(Math.pow(this.latitude - other.latitude, 2) + Math.pow(this.longitude - other.longitude, 2));
+        return distance;
     }
 
-    public void addContainer(Container container) {
-        containers.add(container);
+    // Getter and setter methods
+    public int getID() {
+        return ID;
     }
 
-    public void removeContainer(Container container) {
-        containers.remove(container);
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void addShipToCurrent(Ship ship) {
-        current.add(ship);
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void removeShipFromCurrent(Ship ship) {
-        current.remove(ship);
+    public ArrayList<Container> getContainers() {
+        return containers;
+    }
+
+    public ArrayList<Ship> getHistory() {
+        return history;
+    }
+
+    public ArrayList<Ship> getCurrent() {
+        return current;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setContainers(ArrayList<Container> containers) {
+        this.containers = containers;
+    }
+
+    public void setHistory(ArrayList<Ship> history) {
+        this.history = history;
+    }
+
+    public void setCurrent(ArrayList<Ship> current) {
+        this.current = current;
     }
 }
