@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Ship implements IShip {
 
-    private int ID;
+    private String ID;
     private double fuel;
     private Port currentPort;
     private int totalWeightCapacity;
@@ -10,10 +10,12 @@ public class Ship implements IShip {
     private int maxNumberOfHeavyContainers;
     private int maxNumberOfRefrigeratedContainers;
     private int maxNumberOfLiquidContainers;
+    private double fuelTankCapacity;
+    private double currentFuelLevel;
     private double fuelConsumptionPerKM;
     private ArrayList<Container> containers;
 
-    public Ship(int ID, Port p, int totalWeightCapacity, int maxNumberOfAllContainers, int maxNumberOfHeavyContainers, int maxNumberOfRefrigeratedContainers, int maxNumberOfLiquidContainers, double fuelConsumptionPerKM) {
+    public Ship(String ID, Port p, int totalWeightCapacity, int maxNumberOfAllContainers, int maxNumberOfHeavyContainers, int maxNumberOfRefrigeratedContainers, int maxNumberOfLiquidContainers, double fuelConsumptionPerKM) {
         this.ID = ID;
         this.currentPort = p;
         this.totalWeightCapacity = totalWeightCapacity;
@@ -21,6 +23,19 @@ public class Ship implements IShip {
         this.maxNumberOfHeavyContainers = maxNumberOfHeavyContainers;
         this.maxNumberOfRefrigeratedContainers = maxNumberOfRefrigeratedContainers;
         this.maxNumberOfLiquidContainers = maxNumberOfLiquidContainers;
+        this.fuelConsumptionPerKM = fuelConsumptionPerKM;
+        this.containers = new ArrayList<>();
+    }
+
+    public Ship(String ID, int totalWeightCapacity, int maxNumberOfAllContainers, int maxNumberOfHeavyContainers, int maxNumberOfRefrigeratedContainers, int maxNumberOfLiquidContainers, double fuelTankCapacity, double currentFuelLevel, double fuelConsumptionPerKM) {
+        this.ID = ID;
+        this.totalWeightCapacity = totalWeightCapacity;
+        this.maxNumberOfAllContainers = maxNumberOfAllContainers;
+        this.maxNumberOfHeavyContainers = maxNumberOfHeavyContainers;
+        this.maxNumberOfRefrigeratedContainers = maxNumberOfRefrigeratedContainers;
+        this.maxNumberOfLiquidContainers = maxNumberOfLiquidContainers;
+        this.fuelTankCapacity = fuelTankCapacity;
+        this.currentFuelLevel = currentFuelLevel;
         this.fuelConsumptionPerKM = fuelConsumptionPerKM;
         this.containers = new ArrayList<>();
     }
@@ -92,7 +107,7 @@ public class Ship implements IShip {
     }
 
     // Getter and setter methods
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
@@ -128,7 +143,7 @@ public class Ship implements IShip {
         return fuelConsumptionPerKM;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

@@ -1,5 +1,5 @@
 class BasicContainer extends Container {
-    public BasicContainer(int ID, int weight) {
+    public BasicContainer(String ID, int weight) {
         super(ID, weight);
     }
 

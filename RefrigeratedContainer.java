@@ -1,6 +1,6 @@
 public class RefrigeratedContainer extends HeavyContainer {
-    public RefrigeratedContainer(int ID, int weight) {
-        super(ID, weight);
+    public RefrigeratedContainer(String id, int weight) {
+        super(id, weight);
     }
 
     @Override

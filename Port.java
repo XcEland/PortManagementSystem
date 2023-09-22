@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Port implements IPort {
 
-    private int ID;
+    private String ID;
     private double latitude;
     private double longitude;
     private ArrayList<Container> containers;
     private ArrayList<Ship> history;
     private ArrayList<Ship> current;
 
-    public Port(int ID, double latitude, double longitude) {
+    public Port(String ID, double latitude, double longitude) {
         this.ID = ID;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -43,7 +43,7 @@ public class Port implements IPort {
     }
 
     // Getter and setter methods
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
@@ -67,7 +67,7 @@ public class Port implements IPort {
         return current;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
