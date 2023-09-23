@@ -2,9 +2,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    int containerIDCount = 0;
+	int shipIDCount = 0;
+	static int portIDCount = 0;
+
     private static ArrayList<Container> containers = new ArrayList<>();
     private static ArrayList<Ship> ships = new ArrayList<>();
     private static ArrayList<Port> ports = new ArrayList<>();
+    private static ArrayList<String> basicContIDList = new ArrayList<String>();
+	private static ArrayList<String> justHeavyContIDList = new ArrayList<String>();
+	private static ArrayList<String> liqContIDList = new ArrayList<String>();
+	private static ArrayList<String> refContIDList = new ArrayList<String>();
+
     public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         
@@ -59,19 +69,16 @@ public class Main {
     }
     
     private static void createContainer() {
-        
-        
         System.out.print("Enter container ID/Serial #: ");
-        String id = scanner.nextLine().trim();
-
-        scanner.nextLine();
+        String id = scanner.nextLine();
+    
         System.out.print("Enter container weight: ");
         int weight = scanner.nextInt();
-        
+    
         boolean isHeavy = false;
         boolean isRefrigerated = false;
         boolean isLiquid = false;
-        
+    
         if (weight >= 5000) {
             if (id.endsWith("R")) {
                 isRefrigerated = true;
@@ -83,19 +90,28 @@ public class Main {
                 isHeavy = true;
             }
         }
-        
+    
         Container container;
-        
+    
         if (isRefrigerated) {
-            //container = new RefrigeratedContainer(id, weight, isHeavy, isLiquid);
             container = new RefrigeratedContainer(id, weight);
+            System.out.println("Refrigerated Container created successfully");
+            refContIDList.add(container.getID());
+        } else if (isLiquid) {
+            container = new LiquidContainer(id, weight);
+            System.out.println("Liquid Container created successfully");
+            liqContIDList.add(container.getID());
+        } else if (isHeavy) {
+            container = new HeavyContainer(id, weight);
+            System.out.println("Heavy Container created successfully");
+            justHeavyContIDList.add(container.getID());
         } else {
             container = new BasicContainer(id, weight);
+            System.out.println("Basic Container created successfully.");
+            basicContIDList.add(container.getID());
         }
-        
+    
         containers.add(container);
-        
-        System.out.println("Container created successfully.");
     }
     
     private static void createShip() {
@@ -140,9 +156,11 @@ public class Main {
         System.out.print("Enter the y coordinate of the port: ");
         double yCoordinate = scanner.nextDouble();
         
-        Port port = new Port(null, xCoordinate, yCoordinate);
+        String portID = String.valueOf(portIDCount);
+        Port port = new Port(portID, xCoordinate, yCoordinate);
         
         ports.add(port);
+        portIDCount++;
         
         System.out.println("Port created successfully.");
     }
